@@ -48,3 +48,20 @@
   categories:
     - SQL
     - Excel
+
+
+
+## Scraping
+
+- title: "Web Scraping 201: finding the API"
+  site_name: Greg Reda
+  url: http://www.gregreda.com
+  retrieved_at: 2015-07-31T15:23:35.922051
+  description: |
+    A brief explainer of client-side frameworks and, more importantly, how to extract the URLS for APIs that populate a webpage with data.
+  published_at: 2015-02-15 00:00:00
+  type: website
+  authors:
+    - Greg Reda
+  image: http://www.gregreda.com/theme/images/avatar.jpg
+  icon: http://www.gregreda.com/theme/images/favicon.ico
