@@ -1,0 +1,65 @@
+
+
+
+~~~r
+library(dplyr)
+library(ggplot2)
+~~~
+
+Load the data
+
+~~~r
+wy <- read.csv("/tmp/wy.txt")
+~~~
+
+
+Filter it
+
+~~~r
+wy70 <- filter(wy, year >= 1970)
+~~~
+
+
+Filter with inside list
+
+~~~r
+p <- ggplot(filter(wy70, name %in% c("John", "Mary")), aes(year, count, group = name))
+~~~
+
+Multiple:
+
+~~~r
+p <- ggplot(wy70, aes(year, count, group = name))
+topnames <- wy70 %>% filter(year == 1970) %>%
+                     arrange(desc(count)) %>% head(5)
+p + geom_line(alpha = 0.3) + 
+    geom_line(color = 'red', 
+              data = filter(wy70, name %in% topnames$name)
+            )
+~~~
+
+
+~~~r
+p <- ggplot(wy70, aes(year, count, group = name))
+a_topnames <- wy70 %>% filter(year == 1970) %>%
+                     arrange(desc(count)) %>% head(5)
+b_topnames <- wy70 %>% filter(year == 2013) %>%
+                     arrange(desc(count)) %>% head(5)
+p + geom_line(alpha = 0.3) + 
+    geom_line(color = 'red', 
+              data = filter(wy70, name %in% a_topnames$name)) +
+    geom_line(color = 'green', 
+              data = filter(wy70, name %in% b_topnames$name))
+
+~~~
+
+This is dumb
+
+~~~r
+p <- ggplot(wy70, aes(year, count, group = name))
+p + geom_point(alpha = 0.3, position = 'jitter') + 
+    geom_point(color = 'red', position = 'jitter', 
+              data = filter(wy70, name %in% a_topnames$name)) +
+    geom_point(color = 'green', position = 'jitter', 
+              data = filter(wy70, name %in% b_topnames$name))
+~~~

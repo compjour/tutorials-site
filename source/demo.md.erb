@@ -1,0 +1,30 @@
+---
+title: This is a Demo
+description: A page in which various features of the middleman on the street are demonstrated.
+---
+
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores corporis iure placeat, consequuntur quia fugit. At, odit molestiae doloribus ad ipsam incidunt, quo earum voluptatibus excepturi quibusdam repudiandae eius cumque!
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque incidunt aspernatur nostrum obcaecati voluptatibus, rem qui reprehenderit quam vitae consequatur nisi explicabo illum maxime doloribus assumenda corporis consequuntur officiis aliquam!
+
+<%=media_tag "http://placehold.it/600x400&text=blah", :caption => "This is dan" %>
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate id laborum tempore quod. Sunt commodi obcaecati dignissimos, neque assumenda aut! Illum, saepe. Eaque dolor sed natus, in sapiente nulla eius.
+
+
+~~~ruby
+
+def replace_images_dir
+        return if images_dir == 'images'
+
+        open(File.join(location, 'source', css_dir, 'all.css'), 'r+') {|f|
+          f.flock(File::LOCK_EX)
+          body = f.read
+          body = body.gsub(/images/, images_dir)
+          f.rewind
+          f.puts body
+          f.truncate(f.tell)
+        }
+end
+~~~
