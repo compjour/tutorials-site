@@ -1,5 +1,5 @@
 site:
-  title: 'Computational Journalism Tutorials'
+  title: 'Stanford Computational Journalism Tutorials'
   baseurl: 'http://tutorials.compjour.org'
   description: |
     Technical tutorials for computational and data journalism. Built for the Stanford Journalism program.
