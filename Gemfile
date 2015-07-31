@@ -19,7 +19,7 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 gem "tzinfo-data", platforms: [:mswin, :mingw, :jruby]
 
 gem "stringex"
-
+gem 'chronic'
 ## Middling stuff
 
 gem 'middleman-onthestreet', :git => 'git://github.com/dannguyen/middleman-onthestreet.git'

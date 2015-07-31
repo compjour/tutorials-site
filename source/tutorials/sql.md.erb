@@ -5,7 +5,6 @@ title: SQL Tutorials
 
 <%- resource_listicle(data.listicles.sql_tutorials).each do |resource| -%>
 
-### <%= link_to resource.data.title, resource.url %>
-<%= resource.data.description %>
+<%= omni_link_box resource %>
 
 <%- end -%> 

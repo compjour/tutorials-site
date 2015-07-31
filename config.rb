@@ -1,3 +1,5 @@
+require 'lib/omni_resource'
+
 # Kramdown
 set :markdown_engine, :kramdown
 set :markdown, :toc_levels => 1..3
