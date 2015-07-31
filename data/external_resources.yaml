@@ -1,0 +1,50 @@
+
+
+
+- title: So you want to make a map?
+  url: https://github.com/veltman/learninglunches/tree/master/maps
+  authors: Noah Veltman
+  categories:
+    - Mapping
+
+
+## SQL stuff
+
+- title: A Gentle Introduction to SQL Using SQLite Part I
+  url: https://github.com/tthibo/SQL-Tutorial/blob/master/tutorial_files/part1.textile
+  authors: Troy Thibodeaux
+  categories:
+    - SQL
+
+- title: A Gentle Introduction to SQL Using SQLite Part II
+  authors: Troy Thibodeaux
+  url: https://github.com/tthibo/SQL-Tutorial/blob/master/tutorial_files/part2.textile
+  categories:
+    - SQL
+
+
+- title: A Gentle Introduction to SQL Using SQLite Part III
+  url: https://github.com/tthibo/SQL-Tutorial/blob/master/tutorial_files/part3.textile
+  authors: Troy Thibodeaux
+  categories:
+    - SQL
+
+
+- title: Common MySQL Queries
+  url: http://www.artfulsoftware.com/infotree/queries.php
+  authors:
+    - Peter Brawley
+    - Arthur Fuller
+  categories:
+    - SQL
+
+
+- title: Interactive SQL Tutorials
+  url: http://sqlzoo.net/
+
+- title: "SQL: The Prequel (Excel vs. Databases)"
+  url: https://github.com/veltman/learninglunches/tree/master/databases
+  authors: Noah Veltman
+  categories:
+    - SQL
+    - Excel
