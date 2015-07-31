@@ -1,3 +1,8 @@
+table{
+  // by default, just take in bootstrap stuff
+  @extend .table;
+}
+
 .table-base{
   margin-top: 1.0em;
   margin-bottom: 1.0em;

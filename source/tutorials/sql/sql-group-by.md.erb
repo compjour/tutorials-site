@@ -1,36 +1,35 @@
 ---
 title: Grouping in SQL
 description: How to group records and do aggregations and such TK
+layout: article
 ---
+
+<%=toc_helper%>
 
 
 At this point, we know how create flexible, fine-tuned filters for our database queries using the `WHERE` clause and `LIKE` operators (among many other operators). But we still can't do some of the basic functions that even a Pivot Table newbie can do, such as: get a __count__ of incident reports by _year_, or, listing all the ways a report of `THREATS TO SCHOOL TEACHERS` is resolved, or, of course, counting all the ways those threats have been resolved, by year, by police district, and so forth.
 
 In this lesson, we learn how to simply _group_ the records. We won't do anything particularly interesting, but as this adds an entirely new clause to our already length SQL queries, it's worth slowing down a bit.
 
+#### Random note
 
-----------
-<!-- SPLIT_SUMMARY -->
+Note: For this SQL lesson, I will be using the __Sequel Pro__ GUI for the __MySQL__ database engine and will be querying the SFPD incident reports categorized as `ASSAULT`
 
-> Note: For this SQL lesson, I will be using the __Sequel Pro__ GUI for the __MySQL__ database engine and will be querying the SFPD incident reports categorized as `ASSAULT`
-> 
-> If you want to see exactly the same results I do, you'll want to download and import the__ MySQL database of 2003 to 2013 assault reports from the SFPD__.
-> 
-> I've also created the __SQLite__ version of that database, which should functionally be the same as the MySQL version. 
-> 
-> For both MySQL and SQLite, I've also created a database of _all_ the SFPD reports from 2003 to 2013. All the queries should work the same, except you can explore all the different categories of crime. The tradeoff is that the database is much bigger, and so will be slower to download, import, and query. If you're completely new to all this, I would just go with the __assaults__ database, just so any errors you make don't take even longer to figure out.
-> 
-> - [__MySQL__ assault reports: 130,097 rows](http://stash.padjo.org/dumps/sql/sfpd_assault_reports_2003_2013.sql.zip) 
-> - [__MySQL__ all incident reports: 1,491,764 rows ](http://stash.padjo.org.s3.amazonaws.com/dumps/sql/sfpd_incident_reports_2003_2013.sql.zip)
-> - [__SQLite__ assault reports: 130,097 rows](http://stash.padjo.org/dumps/sql/sfpd_assault_reports_2003_2013.sqlite.zip) 
-> - [__SQLite__ all incident reports: 1,491,764 rows ](http://stash.padjo.org.s3.amazonaws.com/dumps/sql/sfpd_incident_reports_2003_2013.sqlite.zip)
-{: .warning.well}
+If you want to see exactly the same results I do, you'll want to download and import the__ MySQL database of 2003 to 2013 assault reports from the SFPD__.
 
-----------
+I've also created the __SQLite__ version of that database, which should functionally be the same as the MySQL version. 
+
+For both MySQL and SQLite, I've also created a database of _all_ the SFPD reports from 2003 to 2013. All the queries should work the same, except you can explore all the different categories of crime. The tradeoff is that the database is much bigger, and so will be slower to download, import, and query. If you're completely new to all this, I would just go with the __assaults__ database, just so any errors you make don't take even longer to figure out.
+
+- [__MySQL__ assault reports: 130,097 rows](http://stash.padjo.org/dumps/sql/sfpd_assault_reports_2003_2013.sql.zip) 
+- [__MySQL__ all incident reports: 1,491,764 rows ](http://stash.padjo.org.s3.amazonaws.com/dumps/sql/sfpd_incident_reports_2003_2013.sql.zip)
+- [__SQLite__ assault reports: 130,097 rows](http://stash.padjo.org/dumps/sql/sfpd_assault_reports_2003_2013.sqlite.zip) 
+- [__SQLite__ all incident reports: 1,491,764 rows ](http://stash.padjo.org.s3.amazonaws.com/dumps/sql/sfpd_incident_reports_2003_2013.sqlite.zip)
 
 
 
-### Concept of `GROUP BY`
+
+# Concept of `GROUP BY`
 
 Before we actually look at the syntax of the `GROUP BY` clause, it's important to understand the concept: it will, well, _group_ together the records that _share_ the same value in a given column.
 
@@ -89,7 +88,7 @@ Now, if we were to `GROUP BY` __two__ columns &ndash; `Fruit` and `Is_Profitable
 Because there is not a row in which the `Fruit` is `'Pineapples'` and the `Is_Profitable` is equal to `'Yes'`, only 5 results out of a possible 6 combinations are shown.
 
 
-### Syntax of `GROUP BY`
+# Syntax of `GROUP BY`
 
 Among the keywords and clauses we've learned so far, `GROUP BY` comes at the very end. To group the `sfpd_incidents` by `PdDistrict` &ndash; _without_ a `WHERE` clause, we write:
 
@@ -126,6 +125,7 @@ The first thing to realize is: __none__ of the other columns in this table are r
 |------------|----------|-----------------------------------------|------------|-------|------------|----------------|----------------------------------|----------------|--------------|
 |  030204329 | ASSAULT  | BATTERY                                 | 2003-02-18 | 19:00 | TENDERLOIN | ARREST, BOOKED | 300 Block of ELLIS ST            | -122.412330627 | 37.784889221 |
 
+
 &ndash; happens to have an `IncidntNum` of `030204329` and `Resolution` of `'ARREST, BOOKED'` probably because incident number `030204329` is the first incident in our data table that had a `PdDistrict` of `'TENDERLOIN'`.
 
 In other words, you should typically just `SELECT` the columns you're grouping by (and any aggregate calculations you might do, which we'll get to later):
@@ -154,7 +154,7 @@ GROUP BY PdDistrict
 
 
 
-#### Grouping by multiple columns
+# Grouping by multiple columns
 
 To group by multiple columns, supply a __comma-separated__ list of columns. The following query will return a list of every combination of `Descript` and `Resolution`:
 
@@ -167,7 +167,7 @@ This will result in __321__ result rows. Note that the order of `Descript` and `
 
 
 
-#### With `WHERE`
+# With `WHERE`
 
 The `WHERE` clause comes _before_ the `GROUP BY` clause, which means that only rows that are accepted by the filter will end up in the grouping fun.
 
@@ -315,6 +315,6 @@ SELECT PdDistrict, Descript
 Note that again, we don't have to group by (or `SELECT`) the `Date` field because the `WHERE` filter should limit all records to those that happened in `2006`.
 
 
-### Conclusion
+# Conclusion
 
 That's it. If you're wondering, _Hey, I don't want to know just if a police district had a certain kind of report. I want to know the count of those reports per district_ &ndash; good idea! We'll cover that in the next lesson on __aggregate functions__.
