@@ -65,3 +65,17 @@
     - Greg Reda
   image: http://www.gregreda.com/theme/images/avatar.jpg
   icon: http://www.gregreda.com/theme/images/favicon.ico
+
+
+
+- title: "Databases and SQL: Selecting Data"
+  url: http://swcarpentry.github.io/sql-novice-survey/01-select.html
+  authors: Software Carpentry
+
+- title: "Databases and SQL: Sorting and Removing Duplicates"
+  url: http://swcarpentry.github.io/sql-novice-survey/02-sort-dup.html
+  authors: Software Carpentry
+
+- title: "Databases and SQL: Filtering"
+  url: http://swcarpentry.github.io/sql-novice-survey/03-filter.html
+  authors: Software Carpentry
